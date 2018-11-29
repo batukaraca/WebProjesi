@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 namespace Proje.Models
 {
 
-
+    [XmlRoot("ArrayOfWord"), XmlType("ArrayOfWord")]
     public class Word
     {
 

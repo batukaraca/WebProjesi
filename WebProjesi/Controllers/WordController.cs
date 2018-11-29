@@ -14,22 +14,24 @@ namespace Proje.Controllers
 {
     public class WordController : Controller
     {
+       
+
         // domain/Word/List 
 
         public ActionResult List()
         {
-            List<Word> Word = new List<Word>();
-            Deserialize(Word);
-            return View(Word);
-        }
-        static void Deserialize(List<Word> Deneme)
-        {
-            FileStream fs = new FileStream(@"C:\Users\Toshiba\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Word.xml", FileMode.Open);
-            XmlSerializer xs = new XmlSerializer(typeof(List<Word>));
-            xs.Deserialize(fs);
-            fs.Close();
-        }
 
+            List<Word> word = null;
+            string path = "Word.xml";
+
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Word>));
+
+            StreamReader reader = new StreamReader(path);
+            word = (List<Word>)serializer.Deserialize(reader);
+            reader.Close();
+            return View(word);
+        }
+       
 
     }
 }
